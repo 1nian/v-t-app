@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "pinia": "^2.0.30",
     "sass": "^1.58.1",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
