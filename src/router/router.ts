@@ -3,11 +3,11 @@ import { RouteRecordRaw } from "vue-router";
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    redirect: "/text",
+    redirect: "/socket",
   },
   {
-    path: "/text",
-    component: () => import("@/views/Text.vue"),
+    path: "/socket",
+    component: () => import("@/views/socket/Index.vue"),
   },
   {
     path: "/todo",
@@ -16,5 +16,9 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/rain-code",
     component: () => import("@/views/rain-code/Index.vue"),
+  },
+  {
+    path: "/draggable",
+    component: () => import("@/views/vue-use-draggable/Index.vue"),
   },
 ];
