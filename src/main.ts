@@ -34,6 +34,7 @@ app.use(router).use(createPinia()).mount("#app");
 type Utils = {
   times: () => number;
   getString: (str: string) => string;
+  getImageUrl: (name: string) => string;
 };
 
 type Sockets = {
