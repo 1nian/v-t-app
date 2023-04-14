@@ -1,6 +1,8 @@
 import { io } from "socket.io-client";
 
-const socket = io("ws://localhost:3000");
+const socket = io("ws://localhost:3000", {
+  autoConnect: false,
+});
 
 // 连接成功
 socket.on("connect", () => {
