@@ -21,4 +21,8 @@ export const routes: RouteRecordRaw[] = [
     path: "/draggable",
     component: () => import("@/views/vue-use-draggable/Index.vue"),
   },
+  {
+    path: "/lazy",
+    component: () => import("@/views/lazy/Index.vue"),
+  },
 ];
