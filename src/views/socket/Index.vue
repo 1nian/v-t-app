@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="item in list">{{ item }}</li>
+    <li v-permission="item" v-for="item in list">{{ item }}</li>
   </ul>
 
   <FormVue v-model:search="search" @update:search="updateSearch"></FormVue>
@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import { ref, reactive, getCurrentInstance } from "vue";
 import FormVue from "../form/Index.vue";
+import { vPermission } from '@/directives/permission'
 
 const search = reactive({
   dates: "2023-04-04",
@@ -17,7 +18,7 @@ const search = reactive({
 
 const instance = getCurrentInstance();
 
-const list = ref<string[]>([]);
+const list = ref<string[]>(['222', '000']);
 
 instance?.proxy?.$sockets.on("update:message", (msg: string) => {
   list.value.push(msg);
