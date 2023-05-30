@@ -7,15 +7,15 @@
 import { useVModel } from "./useVModel";
 
 const props = defineProps({
-  search: {
+  searchs: {
     type: Object,
     default: () => ({}),
   },
 });
 
-const emit = defineEmits(["update:search"]);
+const emit = defineEmits(["update:searchs"]);
 
-const model = useVModel(props, "search", emit);
+const model = useVModel(props, "searchs", emit);
 </script>
 
 <style scoped lang="scss"></style>
