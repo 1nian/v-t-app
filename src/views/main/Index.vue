@@ -6,8 +6,8 @@
     </div>
 </template>
 
-<script setup>
-import { routes } from '@/router/router.ts'
+<script setup lang="ts">
+import { routes } from '@/router/router'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -16,7 +16,7 @@ const list = computed(() => {
 })
 
 const router = useRouter()
-const goPage = path => {
+const goPage = (path: string) => {
     router.push(path)
 }
 </script>
