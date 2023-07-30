@@ -1,34 +1,34 @@
 <template>
-  <ul>
-    <li v-permission="item" v-for="item in list">{{ item }}</li>
-  </ul>
+    <ul>
+        <li v-permission="item" v-for="item in list">{{ item }}</li>
+    </ul>
 
-  <FormVue v-model:searchs="searchs" @update:search="updateSearch"></FormVue>
+    <FormVue v-model:searchs="searchs" @update:search="updateSearch"></FormVue>
 
-  <!-- <button @click="load">下载</button> -->
+    <!-- <button @click="load">下载</button> -->
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, getCurrentInstance } from "vue";
-import FormVue from "../form/Index.vue";
-import { vPermission } from '@/directives/permission'
+import { ref, reactive, getCurrentInstance } from 'vue';
+import FormVue from '../form/Index.vue';
+import { vPermission } from '@/directives/permission';
 // import download from '@/utils/download'
 
 const searchs = reactive({
-  dates: "2023-04-04",
-  inputs: "测试",
+    dates: '2023-04-04',
+    inputs: '测试',
 });
 
 const instance = getCurrentInstance();
 
 const list = ref<string[]>(['222', '000']);
 
-instance?.proxy?.$sockets.on("update:message", (msg: string) => {
-  list.value.push(msg);
+instance?.proxy?.$sockets.on('update:message', (msg: string) => {
+    list.value.push(msg);
 });
 
 const updateSearch = (val: any) => {
-  console.log(val);
+    console.log(val);
 };
 
 // const load = () => {

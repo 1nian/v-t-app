@@ -7,21 +7,21 @@
 </template>
 
 <script setup lang="ts">
-import { routes } from '@/router/router'
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { routes } from '@/router/router';
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 const list = computed(() => {
-    return routes.filter(item => item?.meta?.title)
-})
+    return routes.filter(item => item?.meta?.title);
+});
 
-const router = useRouter()
+const router = useRouter();
 const goPage = (path: string) => {
-    router.push(path)
-}
+    router.push(path);
+};
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .main {
     display: flex;
     align-items: center;
