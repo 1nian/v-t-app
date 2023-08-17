@@ -16,5 +16,8 @@ const arr = Object.values(imageList).map(i => i.default);
     width: 360px;
     height: 360px;
     margin: 0 auto;
+    img {
+        display: block;
+    }
 }
 </style>
