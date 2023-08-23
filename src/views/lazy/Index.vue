@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { vLazy } from '@/directives/lazy';
-
 const imageList: Record<string, { default: string }> = import.meta.glob('@/assets/images/*.*', { eager: true });
 const arr = Object.values(imageList).map(i => i.default);
 </script>

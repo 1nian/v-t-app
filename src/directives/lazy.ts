@@ -1,6 +1,6 @@
 import type { Directive, DirectiveBinding } from 'vue';
 
-export const vLazy: Directive = (el: HTMLImageElement, binding: DirectiveBinding): void => {
+export const lazy: Directive = (el: HTMLImageElement, binding: DirectiveBinding): void => {
     // 设置默认图片
     el.src = new URL(`../assets/vue.svg`, import.meta.url).href;
 

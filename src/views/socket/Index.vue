@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li v-permission="item" v-for="item in list">{{ item }}</li>
+        <li v-permissions="item" v-for="item in list">{{ item }}</li>
     </ul>
 
     <FormVue v-model:searchs="searchs" @update:search="updateSearch"></FormVue>
@@ -11,8 +11,6 @@
 <script setup lang="ts">
 import { ref, reactive, getCurrentInstance } from 'vue';
 import FormVue from '../form/Index.vue';
-import { vPermission } from '@/directives/permission';
-// import download from '@/utils/download'
 
 const searchs = reactive({
     dates: '2023-04-04',
