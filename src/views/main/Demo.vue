@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+// 运行时声明
 defineProps({
     msg: {
         type: String,

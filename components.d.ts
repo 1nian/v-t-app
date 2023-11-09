@@ -7,6 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CardInline: typeof import('./src/components/card/CardInline.vue')['default']
+    CardLine: typeof import('./src/components/card/CardLine.vue')['default']
+    CardMultiple: typeof import('./src/components/card/CardMultiple.vue')['default']
+    CardSingle: typeof import('./src/components/card/CardSingle.vue')['default']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
