@@ -1,20 +1,26 @@
 <template>
     <div class="to-do-list">
-        <input class="do-input" type="text" placeholder="请输入今日任务名称..." v-model="currentText" @keyup.enter="addList" />
-        <div class="count">总数：{{ currentList.length }} 已完成：{{ currentList.filter(item => item.state).length }} 未完成：{{ currentList.filter(item => !item.state).length }}</div>
-        <div class="do-item" v-for="item in currentList" :key="item.id">
-            <input type="checkbox" v-model="item.state" @change="changCurrentItem(item)" />
-            <div :class="['name', item.state ? 'active-name' : '']">
-                {{ item.name }}
-            </div>
-            <div class="create-time">{{ item.created_time }}</div>
-            <div class="update-time">{{ item.update_time }}</div>
-        </div>
+        <el-input type="text" placeholder="请输入今日任务名称..." v-model="currentText" @keyup.enter="addList" />
+
+        <el-text class="mx-1" type="info">总数：{{ currentList.length }} 已完成：{{ currentList.filter(item => item.state).length }} 未完成：{{ currentList.filter(item => !item.state).length }}</el-text>
+
+        <transition enter-active-class="animate__animated animate__bounceInDown">
+            <el-scrollbar max-height="300px">
+                <div class="do-item" v-for="item in currentList" :key="item.id">
+                    <el-checkbox v-model="item.state" @change="changCurrentItem(item)" />
+                    <el-text :class="['mx-1', 'name', { 'active-name': item.state }]" v-tooltip>
+                        {{ item.name }}
+                    </el-text>
+                    <el-text class="mx-1 create-time" type="info">{{ item.created_time }}</el-text>
+                    <el-text class="mx-1 update-time" type="info">{{ item.update_time }}</el-text>
+                </div>
+            </el-scrollbar>
+        </transition>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { ToDo } from './types/Index';
 // 当前任务
 const currentText = ref<string>('');
@@ -79,53 +85,45 @@ const changCurrentItem = (item: ToDo) => {
 onMounted(() => {
     getList();
 });
+
+onUnmounted(() => {
+    localStorage.clear();
+});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .to-do-list {
     width: 500px;
-    height: 300px;
+    height: 100%;
     margin: 50px auto 0;
     border-radius: 2px;
-    border: 1px solid #ff6700;
     padding: 0 15px;
     box-sizing: border-box;
-}
-.do-input {
-    width: 100%;
-    height: 20px;
-    font-size: 14px;
-    margin: 10px 0;
-}
-input {
-    margin: 0;
-    padding: 0;
-    background: #ffffff;
-    border: 1px solid #2da7e0;
-    border-radius: 2px;
-}
-.do-input input:focus {
-    border: none;
-    box-shadow:
-        0 0 0 1px #42a7ff,
-        0 0 0 3px #bde7ff;
-}
-.do-item {
-    width: 100%;
-    height: 30px;
-    font-size: 16px;
-    line-height: 30px;
-    border-bottom: 1px solid #ff6700;
-    display: flex;
-    align-items: center;
-}
-.name {
-    margin: 0 10px;
-}
-.create-time {
-    margin-right: 10px;
-}
-.active-name {
-    color: #ff6700;
+    .do-item {
+        height: 30px;
+        font-size: 16px;
+        line-height: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        margin: 10px 0;
+        border: 1px solid #ff6700;
+        border-radius: 4px;
+        :deep(.el-checkbox__input.is-checked .el-checkbox__inner) {
+            background-color: #ff6700;
+            border-color: #ff6700;
+        }
+        .name {
+            text-align: left;
+            margin: 0 10px;
+        }
+        .create-time {
+            margin-right: 10px;
+        }
+        .active-name {
+            color: #ff6700;
+        }
+    }
 }
 </style>

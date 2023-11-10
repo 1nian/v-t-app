@@ -3,7 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 const initCanvas = () => {
     let canvas = document.querySelector('#canvas') as HTMLCanvasElement;
@@ -25,8 +26,23 @@ const initCanvas = () => {
     setInterval(rain, 40);
 };
 
+const router = useRouter();
+let timers = ref<number | null>(null);
+// 5s之后跳转到首页
+const replacePath = () => {
+    timers.value = setTimeout(() => {
+        router.push('/layout');
+    }, 10000);
+};
+
 onMounted(() => {
     initCanvas();
+    replacePath();
+});
+
+onUnmounted(() => {
+    timers.value && clearTimeout(timers.value);
+    timers.value = null;
 });
 </script>
 

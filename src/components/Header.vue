@@ -8,11 +8,11 @@
 
 <script setup lang="ts">
 import { routes } from '@/router/router';
-import { ref, computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 const list = computed(() => {
-    return routes.filter(item => item?.meta?.title);
+    return routes[1]?.children?.filter(item => item?.meta?.title);
 });
 
 const router = useRouter();

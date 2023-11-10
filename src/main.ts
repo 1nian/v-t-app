@@ -3,6 +3,7 @@ import App from './App.vue';
 import { router } from '@/router/index';
 import { createPinia } from 'pinia';
 import '@/assets/styles/index.scss';
+import 'animate.css';
 // 引入字体
 import '@/assets/font/font.css';
 import { utils } from '@/utils/index';

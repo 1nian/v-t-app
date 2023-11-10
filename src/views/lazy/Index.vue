@@ -12,10 +12,11 @@ const arr = Object.values(imageList).map(i => i.default);
 <style scoped lang="scss">
 .lazy {
     width: 360px;
-    height: 360px;
+    height: 500px;
     margin: 0 auto;
     img {
         display: block;
+        margin-bottom: 20px;
     }
 }
 </style>
