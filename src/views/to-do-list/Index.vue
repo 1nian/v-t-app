@@ -4,18 +4,20 @@
 
         <el-text class="mx-1" type="info">总数：{{ currentList.length }} 已完成：{{ currentList.filter(item => item.state).length }} 未完成：{{ currentList.filter(item => !item.state).length }}</el-text>
 
-        <transition enter-active-class="animate__animated animate__bounceInDown">
-            <el-scrollbar max-height="300px">
-                <div class="do-item" v-for="item in currentList" :key="item.id">
-                    <el-checkbox v-model="item.state" @change="changCurrentItem(item)" />
-                    <el-text :class="['mx-1', 'name', { 'active-name': item.state }]" v-tooltip>
-                        {{ item.name }}
-                    </el-text>
-                    <el-text class="mx-1 create-time" type="info">{{ item.created_time }}</el-text>
-                    <el-text class="mx-1 update-time" type="info">{{ item.update_time }}</el-text>
+        <el-scrollbar max-height="300px">
+            <TransitionGroup tag="div" enter-active-class="animate__animated animate__backInLeft" leave-active-class="animate__animated animate__backOutLeft">
+                <div v-for="(item, index) in currentList" :key="item.id">
+                    <div class="do-item">
+                        <el-checkbox v-model="item.state" @change="changCurrentItem(index)" />
+                        <el-text :class="['mx-1', 'name', { 'active-name': item.state }]" v-tooltip>
+                            {{ item.name }}
+                        </el-text>
+                        <el-text class="mx-1 create-time" type="info">{{ item.created_time }}</el-text>
+                        <el-text class="mx-1 update-time" type="info">{{ item.update_time }}</el-text>
+                    </div>
                 </div>
-            </el-scrollbar>
-        </transition>
+            </TransitionGroup>
+        </el-scrollbar>
     </div>
 </template>
 
@@ -65,19 +67,8 @@ const addList = () => {
 };
 
 // 改变任务状态
-const changCurrentItem = (item: ToDo) => {
-    currentList.value = currentList.value.map(items => {
-        if (items.id === item.id) {
-            return {
-                ...items,
-                update_time: currentTime.value,
-            };
-        } else {
-            return {
-                ...items,
-            };
-        }
-    });
+const changCurrentItem = (index: number) => {
+    currentList.value.splice(index, 1);
 
     setList();
 };

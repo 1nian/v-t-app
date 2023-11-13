@@ -1,7 +1,7 @@
 <template>
-    <div class="main-demo" v-tooltip>
+    <el-text class="main-demo" v-tooltip>
         {{ msg }}
-    </div>
+    </el-text>
 </template>
 
 <script setup lang="ts">
@@ -17,7 +17,6 @@ defineProps({
 <style scoped lang="scss">
 .main-demo {
     width: 100px;
-    // 强制换行
-    white-space: nowrap;
+    display: block;
 }
 </style>

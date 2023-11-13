@@ -1,10 +1,10 @@
 <template>
     <div class="main">
-        <Demo msg="看啥sdasdas大的">{{ Class[1] }}</Demo>
+        <Demo msg="看啥sdasdas大的看啥sdasdas大的看啥sdasdas大的">{{ Class[1] }}</Demo>
         <div style="display: flex">
             <CardLine :lineList="cardList"></CardLine>
         </div>
-        <div>鼠标位置{{ x }} - {{ y }}</div>
+        <el-text>鼠标位置：{{ x }} - {{ y }}</el-text>
     </div>
 </template>
 
@@ -30,4 +30,3 @@ const { x, y } = useMouse();
     height: 800px;
 }
 </style>
-@/feature/mouse
