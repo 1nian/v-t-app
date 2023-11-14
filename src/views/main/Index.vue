@@ -3,7 +3,8 @@
         <el-space v-model="size">
             <Demo v-permission:[store.permission]="store.permissionKey" msg="看啥sdasdas大的看啥sdasdas大的看啥sdasdas大的">{{ Class[1] }}</Demo>
 
-            <el-text>当前生成的权限key：{{ store.permission.join(',') }}</el-text>
+            <el-text>权限列表：{{ store.permission.join(',') }}</el-text>
+            <el-text>权限key：{{ store.permissionKey }}</el-text>
         </el-space>
 
         <div style="display: flex">
@@ -32,8 +33,6 @@ const { x, y } = useMouse();
 const size = ref(20);
 
 const store = usePermissonStore();
-store.getUserPermission();
-store.getPermissionKey();
 </script>
 
 <style scoped lang="scss">

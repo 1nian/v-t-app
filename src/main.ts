@@ -8,6 +8,7 @@ import 'animate.css';
 import '@/assets/font/font.css';
 import { utils } from '@/utils/index';
 import { sockets } from './socket';
+import { piniaPlugin } from './plugin/pinia';
 
 // 引入全局方法申明文件
 import './global.d.ts';
@@ -16,6 +17,10 @@ import './global.d.ts';
 import * as directives from '@/directives';
 
 const app = createApp(App);
+
+const pinia = createPinia();
+
+pinia.use(piniaPlugin());
 
 // 全局函数
 app.config.globalProperties.$utils = utils;
@@ -28,4 +33,4 @@ Object.keys(directives).forEach(key => {
     app.directive(key, (directives as { [key: string]: Directive })[key]);
 });
 
-app.use(router).use(createPinia()).mount('#app');
+app.use(router).use(pinia).mount('#app');

@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+import { usePermissonStore } from '@/store/permission';
 import { useRouter } from 'vue-router';
 
 const initCanvas = () => {
@@ -26,6 +27,10 @@ const initCanvas = () => {
     setInterval(rain, 40);
 };
 
+onMounted(() => {
+    initCanvas();
+});
+
 const router = useRouter();
 let timers = ref<number | null>(null);
 // 5s之后跳转到首页
@@ -36,13 +41,19 @@ const replacePath = () => {
 };
 
 onMounted(() => {
-    initCanvas();
     replacePath();
 });
 
 onUnmounted(() => {
     timers.value && clearTimeout(timers.value);
     timers.value = null;
+});
+
+const store = usePermissonStore();
+
+onUnmounted(() => {
+    store.getUserPermission();
+    store.getPermissionKey();
 });
 </script>
 
