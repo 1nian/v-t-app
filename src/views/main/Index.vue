@@ -1,6 +1,11 @@
 <template>
     <div class="main">
-        <Demo msg="看啥sdasdas大的看啥sdasdas大的看啥sdasdas大的">{{ Class[1] }}</Demo>
+        <el-space v-model="size">
+            <Demo v-permission:[store.permission]="store.permissionKey" msg="看啥sdasdas大的看啥sdasdas大的看啥sdasdas大的">{{ Class[1] }}</Demo>
+
+            <el-text>当前生成的权限key：{{ store.permission.join(',') }}</el-text>
+        </el-space>
+
         <div style="display: flex">
             <CardLine :lineList="cardList"></CardLine>
         </div>
@@ -12,7 +17,8 @@
 import Demo from './Demo.vue';
 import { cardList } from './list';
 import { useMouse } from '@/feature/mouse';
-import { provide } from 'vue';
+import { ref, provide } from 'vue';
+import { usePermissonStore } from '@/store/permission';
 
 enum Class {
     重大风险 = 1,
@@ -23,6 +29,11 @@ enum Class {
 provide('card-enum', Class);
 
 const { x, y } = useMouse();
+const size = ref(20);
+
+const store = usePermissonStore();
+store.getUserPermission();
+store.getPermissionKey();
 </script>
 
 <style scoped lang="scss">

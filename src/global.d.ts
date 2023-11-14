@@ -6,6 +6,7 @@ declare module 'vue' {
             times: () => number;
             getString: (str: string) => string;
             getImageUrl: (name: string) => string;
+            generateUniqueRandomNumbers: () => string[];
         };
         $sockets: {
             on: (type: string, fn: Function) => void;

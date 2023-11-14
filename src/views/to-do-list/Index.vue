@@ -78,7 +78,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    localStorage.clear();
+    localStorage.removeItem('ToDo');
 });
 </script>
 
