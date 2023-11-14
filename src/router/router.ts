@@ -28,7 +28,7 @@ export const routes: RouteRecordRaw[] = [
             {
                 path: '/socket',
                 meta: {
-                    title: 'Element-Plus动画',
+                    title: 'Element-Plus',
                 },
                 component: () => import('@/views/socket/Index.vue'),
             },

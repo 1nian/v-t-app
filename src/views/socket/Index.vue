@@ -8,11 +8,14 @@
                 <div class="item"></div>
             </div>
         </el-collapse-transition>
+
+        <Upload></Upload>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import Upload from './Upload.vue';
 
 const flag = ref(false);
 </script>
