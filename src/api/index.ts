@@ -1,13 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 const api = axios.create({
     baseURL,
+    timeout: 3000,
 });
 
 api.interceptors.request.use(
-    config => {
+    (config: AxiosRequestConfig) => {
         return config;
     },
     err => {
@@ -16,7 +17,7 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-    res => {
+    (res: AxiosResponse<any>) => {
         return res.data;
     },
     err => {

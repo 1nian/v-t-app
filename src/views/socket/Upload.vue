@@ -15,7 +15,7 @@ import type { UploadFile } from 'element-plus';
 
 type Result = {
     code: number;
-    data: unknown;
+    data: string;
     message: string;
 };
 
@@ -23,7 +23,7 @@ const imageUrl = ref('');
 
 const handlerChange = async (file: UploadFile) => {
     const res: Result = await api.post(
-        '/upload/upload',
+        '/upload',
         {
             file: file.raw,
         },
@@ -39,7 +39,7 @@ const handlerChange = async (file: UploadFile) => {
             message: res.message,
             type: 'success',
         });
-        imageUrl.value = res.data as string;
+        imageUrl.value = res.data;
     } else {
         ElMessage({
             message: res.message,

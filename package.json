@@ -17,7 +17,7 @@
         "pinia": "^2.0.30",
         "sass": "^1.58.1",
         "socket.io-client": "^4.6.1",
-        "vue": "^3.2.45",
+        "vue": "3.3.8",
         "vue-router": "^4.1.6"
     },
     "devDependencies": {
