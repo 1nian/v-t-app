@@ -16,14 +16,14 @@ export const routes: RouteRecordRaw[] = [
             title: 'Layout',
         },
         component: () => import('@/layout/Index.vue'),
-        redirect: '/main',
+        redirect: '/coffee',
         children: [
             {
-                path: '/main',
+                path: '/coffee',
                 meta: {
-                    title: '组件',
+                    title: '咖啡列表页',
                 },
-                component: () => import('@/views/main/Index.vue'),
+                component: () => import('@/views/coffee/Index.vue'),
             },
             {
                 path: '/socket',

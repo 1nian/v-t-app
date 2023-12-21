@@ -6,6 +6,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { usePermissonStore } from '@/store/permission';
 import { useRouter } from 'vue-router';
+import api from '@/api';
 
 const initCanvas = () => {
     let canvas = document.querySelector('#canvas') as HTMLCanvasElement;
@@ -40,8 +41,23 @@ const replacePath = () => {
     }, 10000);
 };
 
-onMounted(() => {
+const signin = async () => {
+    let res = await api.post('/signin', {
+        username: 'admin',
+        password: '123456',
+    });
+
+    if (!res.success) {
+        return;
+    }
+
+    localStorage.setItem('v-t-app-token', res.data.access_token);
+
     replacePath();
+};
+
+onMounted(() => {
+    signin();
 });
 
 onUnmounted(() => {
