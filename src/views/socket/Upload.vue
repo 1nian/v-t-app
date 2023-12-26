@@ -13,16 +13,10 @@ import api from '@/api';
 
 import type { UploadFile } from 'element-plus';
 
-type Result = {
-    code: number;
-    data: string;
-    message: string;
-};
-
 const imageUrl = ref('');
 
 const handlerChange = async (file: UploadFile) => {
-    const res: Result = await api.post(
+    const res = await api.post(
         '/upload',
         {
             file: file.raw,
@@ -34,18 +28,19 @@ const handlerChange = async (file: UploadFile) => {
         },
     );
 
-    if (res.code === 201) {
-        ElMessage({
-            message: res.message,
-            type: 'success',
-        });
-        imageUrl.value = res.data;
-    } else {
+    if (!res.success) {
         ElMessage({
             message: res.message,
             type: 'error',
         });
+        return;
     }
+
+    ElMessage({
+        message: res.message,
+        type: 'success',
+    });
+    imageUrl.value = res.data;
 };
 </script>
 

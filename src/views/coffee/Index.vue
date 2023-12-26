@@ -98,12 +98,17 @@ const handleCreate = () => {
     dialogFormVisible.value = true;
 };
 
-const handleEdit = (index: number, row: Coffees) => {
-    form.name = row.name;
-    form.price = row.price;
-    form.description = row.description;
-    form._id = row._id;
+const handleEdit = async (index: number, row: Coffees) => {
+    let res = await api.get<Coffees>(`/coffees/${row._id}`);
+    if (!res.success) {
+        return;
+    }
+
     dialogFormVisible.value = true;
+    form.name = res.data.name;
+    form.price = res.data.price;
+    form.description = res.data.description;
+    form._id = res.data._id;
 };
 
 const save = async () => {
