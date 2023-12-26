@@ -17,7 +17,7 @@ const imageUrl = ref('');
 
 const handlerChange = async (file: UploadFile) => {
     const res = await api.post(
-        '/upload',
+        '/minio/upload',
         {
             file: file.raw,
         },
@@ -37,10 +37,10 @@ const handlerChange = async (file: UploadFile) => {
     }
 
     ElMessage({
-        message: res.message,
+        message: res.data.message,
         type: 'success',
     });
-    imageUrl.value = res.data;
+    imageUrl.value = res.data?.fileUrl;
 };
 </script>
 
